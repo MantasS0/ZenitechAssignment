@@ -37,8 +37,7 @@ public class Main {
                 "Pop\n" +
                 "Add\n" +
                 "Sub\n" +
-                "Quit\n" +
-                "Funk (Just for fun...k)");
+                "Quit\n");
         calculator.run();
     }
 }

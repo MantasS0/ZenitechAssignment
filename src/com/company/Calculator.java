@@ -1,9 +1,5 @@
 package com.company;
 
-import java.awt.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -23,7 +19,7 @@ public class Calculator {
                 if (stringBuilder.length() > 4) {
                     stringBuilder.delete(0, 4);
                     String input = stringBuilder.toString().trim();
-                    int unsignedInt = Integer.parseUnsignedInt(input, 10);
+                    int unsignedInt = Integer.parseUnsignedInt(input);
                     push(unsignedInt);
                     System.out.println(stackString());
                 }
@@ -42,14 +38,10 @@ public class Calculator {
             if (command.equals("sub")) {
                 sub();
                 System.out.println(stackString());
+                continue;
             }
             if (command.equals("quit")) {
                 flag = false;
-            }
-
-            //Following command is just for the fun of it...
-            if (command.equals("funk")) {
-                openWebPage();
             }
         }
     }
@@ -124,40 +116,6 @@ public class Calculator {
             System.out.print(">> " + getStack().lastElement() + " ");
         } else {
             System.out.println("Error: Stack size is lower than 2");
-        }
-    }
-
-    // Following methods are just for the MAXIMUM FUNK!
-    private boolean openWebPage(URI uri) {
-        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-            try {
-                desktop.browse(uri);
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
-    }
-
-    private boolean openWebPage(URL url) {
-        try {
-            return openWebPage(url.toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private void openWebPage() {
-        try {
-            URL url = new URL("https://youtu.be/YgGzAKP_HuM?t=177");
-            if (openWebPage(url)) {
-                System.out.println("Achievement unlocked: MAXIMUM FUNK!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
